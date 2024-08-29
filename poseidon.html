@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Integración</title>
+    <!-- Enlace al CSS del chatbot de Dialogflow -->
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+</head>
+<body>
+
+    <h1>Bienvenido a la página del Chatbot</h1>
+    <p>Interactúa con nuestro chatbot en la esquina inferior derecha.</p>
+
+    <!-- Script del chatbot de Dialogflow -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
+    <!-- Implementación del chatbot -->
+    <df-messenger
+      project-id="chatbotcamanchaca"
+      agent-id="448cc624-e299-4ba6-9def-934ae2bbbbbf"
+      language-code="es"
+      max-query-length="-1">
+      <df-messenger-chat-bubble
+       chat-title="Poseidon">
+      </df-messenger-chat-bubble>
+    </df-messenger>
+
+    <!-- Estilos personalizados para el chatbot -->
+    <style>
+      df-messenger {
+        z-index: 999;
+        position: fixed;
+        --df-messenger-font-color: #000;
+        --df-messenger-font-family: Google Sans;
+        --df-messenger-chat-background: #f3f6fc;
+        --df-messenger-message-user-background: #d3e3fd;
+        --df-messenger-message-bot-background: #fff;
+        bottom: 16px;
+        right: 16px;
+      }
+    </style>
+
+</body>
+</html>
