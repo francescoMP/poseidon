@@ -7,6 +7,58 @@
     <title>Chatbot Integración</title>
     <!-- Enlace al CSS del chatbot de Dialogflow -->
     <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos personalizados para el chatbot */
+        df-messenger {
+            z-index: 999;
+            position: fixed;
+            --df-messenger-bot-message: #f3f6fc;
+            --df-messenger-button-titlebar-color: #2193b0;
+            --df-messenger-send-icon: #2193b0;
+            --df-messenger-user-message: #d3e3fd;
+            --df-messenger-font-color: #000;
+            --df-messenger-font-family: 'Arial', sans-serif;
+            bottom: 16px;
+            right: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        df-messenger:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,20 +79,11 @@
       </df-messenger-chat-bubble>
     </df-messenger>
 
-    <!-- Estilos personalizados para el chatbot -->
-    <style>
-      df-messenger {
-        z-index: 999;
-        position: fixed;
-        --df-messenger-font-color: #000;
-        --df-messenger-font-family: Google Sans;
-        --df-messenger-chat-background: #f3f6fc;
-        --df-messenger-message-user-background: #d3e3fd;
-        --df-messenger-message-bot-background: #fff;
-        bottom: 16px;
-        right: 16px;
-      }
-    </style>
+    <div class="footer">© 2024 Camanchaca. Todos los derechos reservados.</div>
+
+</body>
+</html>
+
 
 </body>
 </html>
