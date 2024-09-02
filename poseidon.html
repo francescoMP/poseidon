@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -145,8 +145,13 @@
             --df-messenger-user-message: #e0f0ff;
             --df-messenger-font-color: #333333;
             --df-messenger-font-family: 'Helvetica Neue', Arial, sans-serif;
-            bottom: 16px;
+            bottom: 70px; /* Ajuste para dar más espacio al chatbot */
             right: 16px;
+        }
+
+        /* Oculta la fuente en los mensajes del chatbot */
+        df-messenger::part(message-from-bot) .df-card-title {
+            display: none; /* Oculta el título de las tarjetas */
         }
 
         .scroll-to-top {
@@ -241,4 +246,3 @@
 
 </body>
 </html>
-
