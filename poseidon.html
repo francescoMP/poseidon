@@ -141,36 +141,13 @@
         df-messenger {
             z-index: 999;
             position: fixed;
-            --df-messenger-bot-message: #f3f6fc;
-            --df-messenger-button-titlebar-color: #0077b6;
-            --df-messenger-send-icon: #0077b6;
-            --df-messenger-user-message: #e0f0ff;
-            --df-messenger-font-color: #333333;
-            --df-messenger-font-family: 'Helvetica Neue', Arial, sans-serif;
-            bottom: 70px; /* Ajuste para dar más espacio al chatbot */
+            --df-messenger-font-color: #000;
+            --df-messenger-font-family: Google Sans;
+            --df-messenger-chat-background: #f3f6fc;
+            --df-messenger-message-user-background: #d3e3fd;
+            --df-messenger-message-bot-background: #fff;
+            bottom: 16px;
             right: 16px;
-        }
-
-        df-messenger::part(chat-bubble) {
-            background-color: #0077b6; /* Color de fondo del botón del chatbot */
-            color: #ffffff; /* Color del texto del botón del chatbot */
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        df-messenger::part(chat-bubble):hover {
-            transform: scale(1.1);
-            background-color: #005f8a;
-        }
-
-        df-messenger::part(chat-bubble-icon) {
-            font-size: 24px;
         }
 
         .scroll-to-top {
@@ -230,11 +207,11 @@
 
     <!-- Implementación del chatbot -->
     <df-messenger
-      project-id="chatbotcamanchaca"
-      agent-id="448cc624-e299-4ba6-9def-934ae2bbbbbf"
+      project-id="chatbotfinal-434512"
+      agent-id="3c02f42b-c3d4-4ca8-8731-e817b0b75762"
       language-code="es"
       max-query-length="-1">
-      <df-messenger-chat-bubble chat-title="Poseidon"></df-messenger-chat-bubble>
+      <df-messenger-chat-bubble chat-title="Pose1don"></df-messenger-chat-bubble>
     </df-messenger>
 
     <!-- Botón para volver al inicio -->
@@ -256,19 +233,18 @@
         };
 
         // Script para activar la intención de bienvenida automáticamente
-        window.addEventListener('dfMessengerLoaded', function (event) {
-            const messenger = document.querySelector('df-messenger');
-            const iFrame = messenger.shadowRoot.querySelector('iframe');
-            iFrame.onload = function () {
-                const innerDoc = iFrame.contentDocument || iFrame.contentWindow.document;
-                const welcomeMessage = {
-                    type: "event",
+        window.addEventListener('dfMessengerLoaded', function(event) {
+            const dfMessenger = document.querySelector('df-messenger');
+            const iframe = dfMessenger.shadowRoot.querySelector('iframe');
+            iframe.onload = function() {
+                const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const welcomeEvent = {
                     event: {
-                        name: "WELCOME",
-                        languageCode: "es"
+                        name: 'WELCOME', // Nombre de la intención de bienvenida por defecto
+                        languageCode: 'es'
                     }
                 };
-                iFrame.contentWindow.postMessage(welcomeMessage, '*');
+                iframe.contentWindow.postMessage(welcomeEvent, '*');
             };
         });
     </script>
