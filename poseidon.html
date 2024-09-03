@@ -2,78 +2,275 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba de Chatbot</title>
-
+    <title>Camanchaca - Chatbot Integración</title>
+    
     <!-- Enlace al CSS del chatbot de Dialogflow -->
     <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-
+    
     <!-- Estilos personalizados -->
     <style>
-        body {
-            font-family: 'Google Sans', Arial, sans-serif;
-            background-color: #e6f7ff; /* Fondo azul celeste */
-            color: #333;
+        /* Estilo global */
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #e6f7ff; /* Fondo celeste claro */
+            color: #333333;
+            text-align: center;
+        }
+
+        header {
+            width: 100%;
+            padding: 15px 0;
+            background-color: #003f5c;
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
             display: flex;
             justify-content: center;
+            list-style: none;
+            padding: 10px 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f3f6fc;
+        }
+
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1517151235248-18ee286d815b'); /* Imagen del mar */
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            text-align: center;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            font-size: 2rem;
-            color: #0077b6;
+        .hero h1 {
+            font-size: 3rem;
             margin-bottom: 10px;
         }
 
-        p {
-            font-size: 1rem;
-            color: #666;
+        .hero p {
+            font-size: 1.2rem;
             margin-bottom: 20px;
         }
 
+        .button {
+            background-color: #0077b6;
+            color: #ffffff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #005f8a;
+            transform: scale(1.05);
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .info-section {
+            background-color: #ffffff;
+            padding: 40px 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .info-section h2 {
+            font-size: 2rem;
+            color: #003f5c;
+            margin-bottom: 15px;
+        }
+
+        .info-section p {
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666666;
+        }
+
+        footer {
+            width: 100%;
+            padding: 15px 0;
+            background-color: #003f5c;
+            color: #ffffff;
+            font-size: 0.8rem;
+            text-align: center;
+            position: relative; 
+            margin-top: 50px; 
+            z-index: 1000;
+        }
+
+        /* Estilos personalizados para el chatbot */
         df-messenger {
             z-index: 999;
             position: fixed;
-            --df-messenger-font-color: #000;
-            --df-messenger-font-family: 'Google Sans', sans-serif;
-            --df-messenger-chat-background: #f3f6fc;
-            --df-messenger-message-user-background: #d3e3fd;
-            --df-messenger-message-bot-background: #fff;
-            bottom: 16px;
+            --df-messenger-bot-message: #f3f6fc;
+            --df-messenger-button-titlebar-color: #0077b6;
+            --df-messenger-send-icon: #0077b6;
+            --df-messenger-user-message: #e0f0ff;
+            --df-messenger-font-color: #333333;
+            --df-messenger-font-family: 'Helvetica Neue', Arial, sans-serif;
+            bottom: 70px; /* Ajuste para dar más espacio al chatbot */
             right: 16px;
+        }
+
+        df-messenger::part(chat-bubble) {
+            background-color: #0077b6; /* Color de fondo del botón del chatbot */
+            color: #ffffff; /* Color del texto del botón del chatbot */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        df-messenger::part(chat-bubble):hover {
+            transform: scale(1.1);
+            background-color: #005f8a;
+        }
+
+        df-messenger::part(chat-bubble-icon) {
+            font-size: 24px;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 70px;
+            right: 16px;
+            background-color: #0077b6;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background-color: #005f8a;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Bienvenido a la Prueba del Chatbot</h1>
-        <p>Interactúa con el chatbot en la esquina inferior derecha.</p>
-    </div>
+    <!-- Encabezado con menú de navegación -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Sostenibilidad</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección principal con imagen del mar -->
+    <section class="hero">
+        <h1>Bienvenido a Camanchaca</h1>
+        <p>Explore nuestros productos y compromisos con la sostenibilidad.</p>
+        <button class="button">Conócenos más</button>
+    </section>
+
+    <!-- Sección de información sobre Camanchaca -->
+    <section class="info-section">
+        <h2>Sobre Camanchaca</h2>
+        <p>Camanchaca es una empresa chilena líder en la pesca, acuicultura y producción de productos del mar. Fundada en 1965, la compañía ha crecido significativamente a lo largo de los años, abarcando una amplia gama de actividades que incluyen la pesca industrial, el cultivo de salmones y la producción de alimentos del mar. Con un fuerte compromiso hacia la sostenibilidad, Camanchaca busca minimizar su impacto ambiental mientras proporciona productos de alta calidad a clientes de todo el mundo.</p>
+    </section>
 
     <!-- Script del chatbot de Dialogflow -->
     <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
 
     <!-- Implementación del chatbot -->
     <df-messenger
-      project-id="chatbotfinal-434512"
-      agent-id="3c02f42b-c3d4-4ca8-8731-e817b0b75762"
+      project-id="chatbotcamanchaca"
+      agent-id="448cc624-e299-4ba6-9def-934ae2bbbbbf"
       language-code="es"
       max-query-length="-1">
-      <df-messenger-chat-bubble chat-title="Pose1don"></df-messenger-chat-bubble>
+      <df-messenger-chat-bubble chat-title="Poseidon"></df-messenger-chat-bubble>
     </df-messenger>
 
+    <!-- Botón para volver al inicio -->
+    <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
+
+    <!-- Pie de página -->
+    <footer>© 2024 Camanchaca. Todos los derechos reservados.</footer>
+
+    <!-- JavaScript para interactividad -->
+    <script>
+        // Mostrar/ocultar el botón de "volver al inicio"
+        window.onscroll = function() {
+            var scrollButton = document.getElementById('scrollToTopBtn');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollButton.style.display = 'flex';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        };
+
+        // Script para activar la intención de bienvenida automáticamente
+        window.addEventListener('dfMessengerLoaded', function (event) {
+            const messenger = document.querySelector('df-messenger');
+            const iFrame = messenger.shadowRoot.querySelector('iframe');
+            iFrame.onload = function () {
+                const innerDoc = iFrame.contentDocument || iFrame.contentWindow.document;
+                const welcomeMessage = {
+                    type: "event",
+                    event: {
+                        name: "WELCOME",
+                        languageCode: "es"
+                    }
+                };
+                iFrame.contentWindow.postMessage(welcomeMessage, '*');
+            };
+        });
+    </script>
 </body>
 </html>
-on() {
-            window.scrollTo
