@@ -1,38 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chatbot Poseidon</title>
-  <!-- Estilos del chatbot -->
-  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-  <!-- Script del chatbot -->
-  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camanchaca - Asistente Virtual</title>
+    <!-- Importa los estilos y scripts del chatbot de Dialogflow -->
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 2rem;
+        }
+        footer {
+            background-color: #003366;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        df-messenger {
+            z-index: 999;
+            position: fixed;
+            --df-messenger-font-color: #000;
+            --df-messenger-font-family: Arial;
+            --df-messenger-chat-background: #A2CADF;
+            --df-messenger-message-user-background: #FFFFFF;
+            --df-messenger-message-bot-background: #fff;
+            --df-messenger-send-icon: #000;
+            --df-messenger-chat-font-size: 12px; /* Establece el tamaño de la fuente del texto */
+            bottom: 16px;
+            right: 16px;
+        }
+    </style>
 </head>
 <body>
-  <!-- Componente del chatbot -->
-  <df-messenger
-    project-id="chatbotfinal-434512"
-    agent-id="3c02f42b-c3d4-4ca8-8731-e817b0b75762"
-    language-code="es"
-    max-query-length="-1">
-    <df-messenger-chat-bubble chat-title="Poseidon">
-    </df-messenger-chat-bubble>
-  </df-messenger>
+    <header>
+        <h1>Camanchaca - Bienvenidos</h1>
+    </header>
+    
+    <main>
+        <p>Camanchaca es una empresa líder en la industria pesquera chilena, comprometida con la sostenibilidad y la calidad de sus productos marinos. Con presencia en mercados internacionales, ofrece una amplia gama de productos frescos y congelados, desde salmones y mejillones hasta langostinos y otros frutos del mar.</p>
+        <p>Para cualquier consulta o información, utiliza nuestro asistente virtual "Poseidón".</p>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Camanchaca, Inc. Todos los derechos reservados.</p>
+    </footer>
 
-  <!-- Estilos personalizados para el chatbot -->
-  <style>
-    df-messenger {
-      z-index: 999;
-      position: fixed;
-      --df-messenger-font-color: #000000; /* Color de fuente: negro */
-      --df-messenger-font-family: Arial;
-      --df-messenger-chat-background: #fd7e14; /* Fondo del chat: naranja */
-      --df-messenger-message-user-background: #FFFFFF; /* Fondo del mensaje del usuario: blanco */
-      --df-messenger-message-bot-background: #FFFFFF; /* Fondo del mensaje del bot: azul */
-      bottom: 16px;
-      right: 16px;
-    }
-  </style>
+    <!-- Implementa el chatbot de Dialogflow -->
+    <df-messenger
+      project-id="presentacionchatbot"
+      agent-id="930ecf76-67e4-4852-bc3c-34748e262525"
+      language-code="es"
+      max-query-length="-1">
+      <df-messenger-chat-bubble chat-title="Poseidon Asistente Virtual">
+      </df-messenger-chat-bubble>
+    </df-messenger>
 </body>
 </html>
