@@ -4,57 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chatbot Poseidon</title>
-  <!-- Importar los estilos y scripts de Dialogflow -->
+  <!-- Estilos del chatbot -->
   <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <!-- Script del chatbot -->
   <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-
-    .header {
-      background-color: #4285F4;
-      color: #FFFFFF;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .content {
-      padding: 40px;
-      text-align: center;
-    }
-
-    df-messenger {
-      z-index: 999;
-      position: fixed;
-      width: 400px; /* Aumenta el ancho del chatbot */
-      height: 600px; /* Aumenta la altura del chatbot */
-      --df-messenger-bot-message: #4285F4;
-      --df-messenger-font-color: #FFFFFF;
-      --df-messenger-chat-background: #fd7e14;
-      --df-messenger-message-user-background: #FFFFFF;
-      --df-messenger-message-bot-background: #4285F4;
-      --df-messenger-input-font-size: 16px; /* Tamaño de la fuente de entrada */
-      bottom: 16px;
-      right: 16px;
-    }
-  </style>
 </head>
 <body>
-  <!-- Cabecera de la página -->
-  <div class="header">
-    <h1>Bienvenido al Asistente Virtual Poseidon</h1>
-  </div>
-
-  <!-- Contenido de la página -->
-  <div class="content">
-    <p>Esta es una página de ejemplo que incluye un chatbot integrado de Dialogflow. Puedes interactuar con el chatbot haciendo clic en el icono en la esquina inferior derecha.</p>
-  </div>
-
-  <!-- Integración del chatbot de Dialogflow -->
+  <!-- Componente del chatbot -->
   <df-messenger
     project-id="chatbotfinal-434512"
     agent-id="3c02f42b-c3d4-4ca8-8731-e817b0b75762"
@@ -63,6 +19,20 @@
     <df-messenger-chat-bubble chat-title="Poseidon">
     </df-messenger-chat-bubble>
   </df-messenger>
+
+  <!-- Estilos personalizados para el chatbot -->
+  <style>
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      --df-messenger-font-color: #4285F4;
+      --df-messenger-font-family: Arial;
+      --df-messenger-chat-background: #fd7e14;
+      --df-messenger-message-user-background: #FFFFFF;
+      --df-messenger-message-bot-background: #4285F4;
+      bottom: 16px;
+      right: 16px;
+    }
+  </style>
 </body>
 </html>
-
