@@ -1,107 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba de Chatbot</title>
-    
-    <!-- Enlace al CSS del chatbot de Dialogflow -->
-    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-    
-    <!-- Estilos personalizados -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e0f7fa; /* Fondo azul celeste */
-            color: #333;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #00796b; /* Azul más oscuro */
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        .content {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        footer {
-            background-color: #00796b;
-            color: white;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot Poseidon</title>
+  <!-- Importar los estilos y scripts de Dialogflow -->
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
 
-        /* Estilos personalizados para el chatbot */
-        df-messenger {
-            z-index: 999;
-            position: fixed;
-            --df-messenger-font-color: #000;
-            --df-messenger-font-family: Arial;
-            --df-messenger-chat-background: #fd7e14;
-            --df-messenger-message-user-background: #d3e3fd;
-            --df-messenger-message-bot-background: #4285F4;
-            --df-messenger-bot-font-color: #FFFFFF;
-            bottom: 16px;
-            right: 16px;
-        }
-    </style>
+    .header {
+      background-color: #4285F4;
+      color: #FFFFFF;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .content {
+      padding: 40px;
+      text-align: center;
+    }
+
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      width: 400px; /* Aumenta el ancho del chatbot */
+      height: 600px; /* Aumenta la altura del chatbot */
+      --df-messenger-bot-message: #4285F4;
+      --df-messenger-font-color: #FFFFFF;
+      --df-messenger-chat-background: #fd7e14;
+      --df-messenger-message-user-background: #FFFFFF;
+      --df-messenger-message-bot-background: #4285F4;
+      --df-messenger-input-font-size: 16px; /* Tamaño de la fuente de entrada */
+      bottom: 16px;
+      right: 16px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a la Prueba de Chatbot</h1>
-    </header>
+  <!-- Cabecera de la página -->
+  <div class="header">
+    <h1>Bienvenido al Asistente Virtual Poseidon</h1>
+  </div>
 
-    <div class="content">
-        <p>Esta es una página simple para probar la integración de tu chatbot.</p>
-    </div>
+  <!-- Contenido de la página -->
+  <div class="content">
+    <p>Esta es una página de ejemplo que incluye un chatbot integrado de Dialogflow. Puedes interactuar con el chatbot haciendo clic en el icono en la esquina inferior derecha.</p>
+  </div>
 
-    <!-- Script del chatbot de Dialogflow -->
-    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-
-    <!-- Implementación del chatbot -->
-    <df-messenger
-      id="df-messenger"
-      project-id="chatbotfinal-434512"
-      agent-id="3c02f42b-c3d4-4ca8-8731-e817b0b75762"
-      language-code="es"
-      max-query-length="-1">
-      <df-messenger-chat-bubble
-       chat-title="Pose1don">
-      </df-messenger-chat-bubble>
-    </df-messenger>
-
-    <footer>
-        © 2024 Prueba de Chatbot
-    </footer>
-
-    <!-- JavaScript para el trigger del mensaje de bienvenida -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const dfMessenger = document.querySelector('df-messenger');
-            dfMessenger.addEventListener('df-messenger-ready', function() {
-                // Enviar el mensaje de bienvenida cuando el chatbot está listo
-                dfMessenger.querySelector('df-messenger').setAttribute('query', 'Default Welcome Intent');
-            });
-
-            dfMessenger.addEventListener('click', function() {
-                setTimeout(() => {
-                    // Enviar el mensaje de bienvenida al hacer clic en la pestaña del chatbot
-                    const event = new CustomEvent('df-messenger-send', {
-                        detail: { text: 'Default Welcome Intent' }
-                    });
-                    dfMessenger.dispatchEvent(event);
-                }, 500);
-            });
-        });
-    </script>
+  <!-- Integración del chatbot de Dialogflow -->
+  <df-messenger
+    project-id="chatbotfinal-434512"
+    agent-id="3c02f42b-c3d4-4ca8-8731-e817b0b75762"
+    language-code="es"
+    max-query-length="-1">
+    <df-messenger-chat-bubble chat-title="Poseidon">
+    </df-messenger-chat-bubble>
+  </df-messenger>
 </body>
 </html>
+
