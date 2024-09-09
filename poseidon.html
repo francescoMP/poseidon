@@ -36,33 +36,44 @@
 </style>
 
 <script>
-  // Detecta cuando el chat se abre
-  window.addEventListener('dfMessengerOpen', function(event) {
-    // Espera un breve momento para asegurarse de que el chat esté completamente abierto
-    setTimeout(function() {
-      // Selecciona el chatbot y su cuadro de entrada
-      const chatInput = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('textarea');
-      
-      if (chatInput) {
-        // Establece el valor a "hola"
-        chatInput.value = 'hola';
-        // Simula el evento de "input" para que el componente lo reconozca
-        chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+  // Función para determinar el saludo según la hora del día
+  function obtenerSaludo() {
+    const hora = new Date().getHours();
+    if (hora < 12) {
+      return "Hola, buenos días";
+    } else if (hora < 18) {
+      return "Hola, buenas tardes";
+    } else {
+      return "Hola, buenas noches";
+    }
+  }
 
-        // Encuentra el botón de enviar y lo activa
-        const sendButton = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('button');
+  document.addEventListener('dfMessengerLoaded', function() {
+    // Selecciona el icono del chatbot (chat bubble)
+    const chatBubble = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-chat-bubble');
 
-        if (sendButton) {
-          sendButton.click();
+    // Escucha el evento de clic en el icono del chatbot
+    chatBubble.addEventListener('click', function() {
+      // Espera un breve momento para asegurarse de que el chat esté completamente abierto
+      setTimeout(function() {
+        // Selecciona el cuadro de entrada del chatbot
+        const chatInput = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('textarea');
+
+        if (chatInput) {
+          // Establece el valor del mensaje al saludo apropiado
+          chatInput.value = obtenerSaludo();
+          // Simula el evento de "input" para que el componente lo reconozca
+          chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+
+          // Encuentra el botón de enviar y lo activa
+          const sendButton = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('button');
+
+          if (sendButton) {
+            sendButton.click();
+          }
         }
-      }
-    }, 500); // Puedes ajustar este tiempo si es necesario
-  });
-
-  // Simula el evento de apertura de chat al hacer clic en el icono
-  const chatBubble = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-chat-bubble');
-
-  chatBubble.addEventListener('click', function() {
-    window.dispatchEvent(new Event('dfMessengerOpen'));
+      }, 500); // Ajusta el tiempo si es necesario para que se sincronice correctamente con la apertura del chat
+    });
   });
 </script>
+
