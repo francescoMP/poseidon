@@ -1,75 +1,68 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camanchaca - Asistente Virtual</title>
-    <!-- Importa los estilos y scripts del chatbot de Dialogflow -->
-    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
-        header {
-            background-color: #003366;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        main {
-            padding: 2rem;
-        }
-        footer {
-            background-color: #003366;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-        df-messenger {
-            z-index: 999;
-            position: fixed;
-            --df-messenger-font-color: #000;
-            --df-messenger-font-family: Arial;
-            --df-messenger-chat-background: #A2CADF;
-            --df-messenger-message-user-background: #FFFFFF;
-            --df-messenger-message-bot-background: #fff;
-            --df-messenger-send-icon: #000;
-            --df-messenger-chat-font-size: 12px; /* Establece el tamaño de la fuente del texto */
-            bottom: 16px;
-            right: 16px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Camanchaca - Bienvenidos</h1>
-    </header>
-    
-    <main>
-        <p>Camanchaca es una empresa líder en la industria pesquera chilena, comprometida con la sostenibilidad y la calidad de sus productos marinos. Con presencia en mercados internacionales, ofrece una amplia gama de productos frescos y congelados, desde salmones y mejillones hasta langostinos y otros frutos del mar.</p>
-        <p>Para cualquier consulta o información, utiliza nuestro asistente virtual "Poseidón".</p>
-    </main>
-    
-    <footer>
-        <p>&copy; 2024 Camanchaca, Inc. Todos los derechos reservados.</p>
-    </footer>
+<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
 
-    <!-- Implementa el chatbot de Dialogflow -->
-    <df-messenger
-      project-id="presentacionchatbot"
-      agent-id="930ecf76-67e4-4852-bc3c-34748e262525"
-      language-code="es"
-      max-query-length="-1">
-      <df-messenger-chat-bubble chat-title="Poseidon Asistente Virtual">
-      </df-messenger-chat-bubble>
-    </df-messenger>
-</body>
-</html>
+<df-messenger
+  id="chatbot"
+  project-id="presentacionchatbot"
+  agent-id="930ecf76-67e4-4852-bc3c-34748e262525"
+  language-code="es"
+  max-query-length="-1">
+  <df-messenger-chat-bubble chat-title="Poseidon Asistente Virtual"></df-messenger-chat-bubble>
+</df-messenger>
+
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    --df-messenger-chat-background: #A2CADF;
+    --df-messenger-message-user-background: #FFFFFF;
+    --df-messenger-message-bot-background: #E6E6FA;
+    --df-messenger-font-color: #333;
+    --df-messenger-font-family: 'Arial', sans-serif;
+    --df-messenger-button-titlebar-color: #007AFF;
+  }
+
+  df-messenger [slot="df-messenger-chat-bubble"] {
+    background-color: #007AFF;
+    color: #ffffff;
+  }
+
+  df-messenger [slot="df-messenger-titlebar"] {
+    background-color: #007AFF;
+    color: #ffffff;
+  }
+</style>
+
+<script>
+  // Detecta cuando el chat se abre
+  window.addEventListener('dfMessengerOpen', function(event) {
+    // Espera un breve momento para asegurarse de que el chat esté completamente abierto
+    setTimeout(function() {
+      // Selecciona el chatbot y su cuadro de entrada
+      const chatInput = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('textarea');
+      
+      if (chatInput) {
+        // Establece el valor a "hola"
+        chatInput.value = 'hola';
+        // Simula el evento de "input" para que el componente lo reconozca
+        chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+
+        // Encuentra el botón de enviar y lo activa
+        const sendButton = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('button');
+
+        if (sendButton) {
+          sendButton.click();
+        }
+      }
+    }, 500); // Puedes ajustar este tiempo si es necesario
+  });
+
+  // Simula el evento de apertura de chat al hacer clic en el icono
+  const chatBubble = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-chat-bubble');
+
+  chatBubble.addEventListener('click', function() {
+    window.dispatchEvent(new Event('dfMessengerOpen'));
+  });
+</script>
