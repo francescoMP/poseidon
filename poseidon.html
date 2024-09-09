@@ -1,79 +1,143 @@
-<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-
-<df-messenger
-  id="chatbot"
-  project-id="presentacionchatbot"
-  agent-id="930ecf76-67e4-4852-bc3c-34748e262525"
-  language-code="es"
-  max-query-length="-1">
-  <df-messenger-chat-bubble chat-title="Poseidon Asistente Virtual"></df-messenger-chat-bubble>
-</df-messenger>
-
-<style>
-  df-messenger {
-    z-index: 999;
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    --df-messenger-chat-background: #A2CADF;
-    --df-messenger-message-user-background: #FFFFFF;
-    --df-messenger-message-bot-background: #E6E6FA;
-    --df-messenger-font-color: #333;
-    --df-messenger-font-family: 'Arial', sans-serif;
-    --df-messenger-button-titlebar-color: #007AFF;
-  }
-
-  df-messenger [slot="df-messenger-chat-bubble"] {
-    background-color: #007AFF;
-    color: #ffffff;
-  }
-
-  df-messenger [slot="df-messenger-titlebar"] {
-    background-color: #007AFF;
-    color: #ffffff;
-  }
-</style>
-
-<script>
-  // Función para determinar el saludo según la hora del día
-  function obtenerSaludo() {
-    const hora = new Date().getHours();
-    if (hora < 12) {
-      return "Hola, buenos días";
-    } else if (hora < 18) {
-      return "Hola, buenas tardes";
-    } else {
-      return "Hola, buenas noches";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot Poseidon Asistente Virtual</title>
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
     }
-  }
 
-  document.addEventListener('dfMessengerLoaded', function() {
-    // Selecciona el icono del chatbot (chat bubble)
-    const chatBubble = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-chat-bubble');
+    h1 {
+      color: #007AFF;
+    }
 
-    // Escucha el evento de clic en el icono del chatbot
-    chatBubble.addEventListener('click', function() {
-      // Espera un breve momento para asegurarse de que el chat esté completamente abierto
-      setTimeout(function() {
-        // Selecciona el cuadro de entrada del chatbot
-        const chatInput = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('textarea');
+    p {
+      font-size: 1.2em;
+      color: #333;
+    }
 
-        if (chatInput) {
-          // Establece el valor del mensaje al saludo apropiado
-          chatInput.value = obtenerSaludo();
-          // Simula el evento de "input" para que el componente lo reconozca
-          chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+    #openChatButton {
+      background-color: #007AFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
 
-          // Encuentra el botón de enviar y lo activa
-          const sendButton = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('button');
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      --df-messenger-chat-background: #A2CADF;
+      --df-messenger-message-user-background: #FFFFFF;
+      --df-messenger-message-bot-background: #E6E6FA;
+      --df-messenger-font-color: #333;
+      --df-messenger-font-family: 'Arial', sans-serif;
+      --df-messenger-button-titlebar-color: #007AFF;
+    }
 
-          if (sendButton) {
-            sendButton.click();
-          }
-        }
-      }, 500); // Ajusta el tiempo si es necesario para que se sincronice correctamente con la apertura del chat
+    df-messenger [slot="df-messenger-chat-bubble"] {
+      background-color: #007AFF;
+      color: #ffffff;
+    }
+
+    df-messenger [slot="df-messenger-titlebar"] {
+      background-color: #007AFF;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Contenido HTML adicional -->
+  <h1>Bienvenido al Asistente Virtual Poseidon</h1>
+  <p>Estamos aquí para ayudarte. Haz clic en el botón de abajo para comenzar una conversación con nuestro asistente virtual.</p>
+  <button id="openChatButton">Abrir Chat</button>
+
+  <!-- Componente del Chatbot -->
+  <df-messenger
+    id="chatbot"
+    project-id="presentacionchatbot"
+    agent-id="930ecf76-67e4-4852-bc3c-34748e262525"
+    language-code="es"
+    max-query-length="-1">
+    <df-messenger-chat-bubble chat-title="Poseidon Asistente Virtual"></df-messenger-chat-bubble>
+  </df-messenger>
+
+  <!-- Script para manejo de eventos y saludo automático -->
+  <script>
+    // Función para determinar el saludo según la hora del día
+    function obtenerSaludo() {
+      const hora = new Date().getHours();
+      if (hora < 12) {
+        return "Hola, buenos días";
+      } else if (hora < 18) {
+        return "Hola, buenas tardes";
+      } else {
+        return "Hola, buenas noches";
+      }
+    }
+
+    document.addEventListener('dfMessengerLoaded', function() {
+      const dfMessengerElement = document.querySelector('df-messenger');
+
+      if (dfMessengerElement && dfMessengerElement.shadowRoot) {
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'opened') {
+              const isOpen = dfMessengerElement.shadowRoot.querySelector('df-messenger-chat').hasAttribute('opened');
+              if (isOpen) {
+                enviarSaludo();
+              }
+            }
+          });
+        });
+
+        // Observa los cambios en el atributo de chat abierto/cerrado
+        observer.observe(dfMessengerElement.shadowRoot.querySelector('df-messenger-chat'), { attributes: true });
+      }
+
+      // Manejo del botón para abrir el chat
+      const openChatButton = document.getElementById('openChatButton');
+      openChatButton.addEventListener('click', function() {
+        dfMessengerElement.shadowRoot.querySelector('df-messenger-chat-bubble').click();
+      });
     });
-  });
-</script>
 
+    // Función para enviar el saludo automáticamente
+    function enviarSaludo() {
+      const chatInput = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('textarea');
+
+      if (chatInput) {
+        // Establece el valor del mensaje al saludo apropiado
+        chatInput.value = obtenerSaludo();
+        // Simula el evento de "input" para que el componente lo reconozca
+        chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+
+        // Encuentra el botón de enviar y lo activa
+        const sendButton = document.querySelector('df-messenger').shadowRoot.querySelector('df-messenger-user-input').shadowRoot.querySelector('button');
+
+        if (sendButton) {
+          sendButton.click();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
