@@ -1,48 +1,64 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asistente Virtual</title>
-  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #F0F0F0;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    df-messenger {
-      z-index: 999;
-      position: fixed;
-      --df-messenger-font-color: #000;
-      --df-messenger-font-family: Arial;
-      --df-messenger-chat-background: #A2CADF;
-      --df-messenger-message-user-background: #FFFFFF;
-      --df-messenger-message-bot-background: #fff;
-      bottom: 16px;
-      right: 16px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Chatbot</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 50px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .button {
+            background-color: #0077b6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #005f86;
+        }
+    </style>
 </head>
 <body>
-  <h1>Bienvenido a nuestro Asistente Virtual</h1>
+    <div class="container">
+        <h1>Bienvenido a nuestro sitio</h1>
+        <p>Haz clic en el icono de chat para hablar con nuestro chatbot.</p>
+        <button class="button">Comenzar Chat</button>
+    </div>
 
-  <!-- Chatbot de Dialogflow -->
-  <df-messenger
-    project-id="presentacionchatbot"
-    agent-id="930ecf76-67e4-4852-bc3c-34748e262525"
-    language-code="es"
-    max-query-length="-1">
-    <df-messenger-chat-bubble
-     chat-title="Asistente Virtual">
-    </df-messenger-chat-bubble>
-  </df-messenger>
-
-  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/47555485.js"></script>
+    <!-- End of HubSpot Embed Code -->
 </body>
 </html>
